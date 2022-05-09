@@ -78,7 +78,7 @@ if ( ! function_exists('tps_posts_en') ) {
 /*
  * Register Custom Taxonomies
  */
-function tps_en_hierarchical_taxonomy() {
+function tps_post_en_hierarchical_taxonomy() {
 
     $labels = array(
         'name'                       => _x( 'Categories', 'Taxonomy General Name' ),
@@ -113,4 +113,42 @@ function tps_en_hierarchical_taxonomy() {
         'rewrite' => array( 'slug' => 'category' ),
     ));
 }
-add_action( 'init', 'tps_en_hierarchical_taxonomy', 0 );
+add_action( 'init', 'tps_post_en_hierarchical_taxonomy', 0 );
+
+function tps_post_en_nonhierarchical_taxonomy() {
+
+    $labels = array(
+        'name'                       => _x( 'Tags', 'Taxonomy General Name' ),
+        'singular_name'              => _x( 'Tag', 'Taxonomy Singular Name' ),
+        'menu_name'                  => __( 'Tags' ),
+        'all_items'                  => __( 'All Tags' ),
+        'parent_item'                => __( 'Parent Tag' ),
+        'parent_item_colon'          => __( 'Parent Tag:' ),
+        'new_item_name'              => __( 'New Tag Name' ),
+        'add_new_item'               => __( 'Add New Tag' ),
+        'edit_item'                  => __( 'Edit Tag' ),
+        'update_item'                => __( 'Update Tag' ),
+        'view_item'                  => __( 'View Tag' ),
+        'separate_items_with_commas' => __( 'Separate tags with commas' ),
+        'add_or_remove_items'        => __( 'Add or remove tags' ),
+        'choose_from_most_used'      => __( 'Choose from the most used' ),
+        'popular_items'              => __( 'Popular Tags' ),
+        'search_items'               => __( 'Search Tags' ),
+        'not_found'                  => __( 'Not Found' ),
+        'no_terms'                   => __( 'No tags' ),
+        'items_list'                 => __( 'Tags list' ),
+        'items_list_navigation'      => __( 'Tags list navigation' ),
+    );
+
+    register_taxonomy('tags',array('post_en'),array(
+        'hierarchical' => false,
+        'labels' => $labels,
+        'show_ui' => true,
+        'show_in_rest' => true,
+        'show_admin_column' => true,
+        'update_count_callback' => '_update_post_term_count',
+        'query_var' => true,
+        'rewrite' => array( 'slug' => 'tag' ),
+    ));
+}
+add_action( 'init', 'tps_post_en_nonhierarchical_taxonomy', 0 );
