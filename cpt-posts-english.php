@@ -78,6 +78,8 @@ if ( ! function_exists('tps_posts_en') ) {
 /*
  * Register Custom Taxonomies
  */
+
+/*
 function tps_post_en_hierarchical_taxonomy() {
 
     $labels = array(
@@ -114,7 +116,9 @@ function tps_post_en_hierarchical_taxonomy() {
     ));
 }
 add_action( 'init', 'tps_post_en_hierarchical_taxonomy', 0 );
+*/
 
+/*
 function tps_post_en_nonhierarchical_taxonomy() {
 
     $labels = array(
@@ -152,3 +156,4 @@ function tps_post_en_nonhierarchical_taxonomy() {
     ));
 }
 add_action( 'init', 'tps_post_en_nonhierarchical_taxonomy', 0 );
+*/
